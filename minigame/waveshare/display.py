@@ -9,9 +9,10 @@ class Display(minigame.Display):
     def __init__(self):
         self.st7735 = ST7735.ST7735(
             port=0,
-            cs=ST7735.BG_SPI_CS_FRONT,
-            dc=9,
-            backlight=19,
+            cs=ST7735.BG_SPI_CS_BACK,
+            dc=25,
+            backlight=24,
+            rst=27,
             rotation=90,
             spi_speed_hz=4000000
         )
