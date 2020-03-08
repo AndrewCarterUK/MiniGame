@@ -4,8 +4,6 @@ from minigame.games.shit_invaders import ShitInvaders
 SCALE_FACTOR = 8
 WIDTH = 128
 HEIGHT = 128
-BLOCK_SIZE = 16
-BULLET_SIZE = 4
 STEP_TIME = 0.01
 
 
