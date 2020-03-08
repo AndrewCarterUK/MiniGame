@@ -111,7 +111,10 @@ class ShitInvaders:
 
         if next_movement == 'down':
             if self.alien_time > ALIEN_MINIMUM_TIME:
-                self.alien_time = self.alien_time - ALIEN_TIME_STEP
+                self.alien_time = round(self.alien_time - ALIEN_TIME_STEP, 2)
+
+                if self.alien_time < ALIEN_MINIMUM_TIME:
+                    self.alien_time = ALIEN_MINIMUM_TIME
 
             if self.alien_fire_probability < ALIEN_MAXIMUM_FIRE_PROBABILITY:
                 self.alien_fire_probability = self.alien_fire_probability + ALIEN_FIRE_PROBABILITY_STEP
