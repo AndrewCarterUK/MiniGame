@@ -8,11 +8,15 @@ ALIEN_BLOCK_SIZE = 8
 ALIENS_PER_ROW = int(WIDTH / ALIEN_BLOCK_SIZE) - 6
 ALIEN_ROWS = int(HEIGHT / (2 * ALIEN_BLOCK_SIZE))
 
-# How often to move the aliens
-ALIEN_TIME = 4
+# How often to move the aliens intially, how much to step the alien time down with each shift
+ALIEN_START_TIME = 4
+ALIEN_TIME_STEP = 0.2
+ALIEN_MINIMUM_TIME = 1
 
 # How likely an alien is to fire in a time step
-ALIEN_FIRE_PROBABILITY = 0.01
+ALIEN_START_FIRE_PROBABILITY = 0.01
+ALIEN_FIRE_PROBABILITY_STEP = 0.005
+ALIEN_MAXIMUM_FIRE_PROBABILITY = 0.03
 
 # Bunker constants
 NUMBER_OF_BUNKERS = 4

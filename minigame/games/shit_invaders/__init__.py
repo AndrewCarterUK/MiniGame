@@ -2,7 +2,9 @@ from time import sleep
 from random import random
 from PIL import Image
 from minigame.games.shit_invaders.global_constants import WIDTH, HEIGHT
-from minigame.games.shit_invaders.global_constants import ALIENS_PER_ROW, ALIEN_ROWS, ALIEN_FIRE_PROBABILITY, ALIEN_TIME, ALIEN_BLOCK_SIZE
+from minigame.games.shit_invaders.global_constants import ALIENS_PER_ROW, ALIEN_ROWS, ALIEN_BLOCK_SIZE
+from minigame.games.shit_invaders.global_constants import ALIEN_START_TIME, ALIEN_TIME_STEP, ALIEN_MINIMUM_TIME
+from minigame.games.shit_invaders.global_constants import ALIEN_START_FIRE_PROBABILITY, ALIEN_FIRE_PROBABILITY_STEP, ALIEN_MAXIMUM_FIRE_PROBABILITY
 from minigame.games.shit_invaders.global_constants import BUNKER_MAP, BUNKER_WIDTH, BUNKER_HEIGHT, NUMBER_OF_BUNKERS
 from minigame.games.shit_invaders.alien import Alien
 from minigame.games.shit_invaders.bullet import Bullet
@@ -36,6 +38,8 @@ class ShitInvaders:
         self.alien_offset = 0
         self.alien_direction = 'right'
         self.alien_move_limit = int((WIDTH - (ALIENS_PER_ROW * ALIEN_BLOCK_SIZE)) / 2)
+        self.alien_time = ALIEN_START_TIME
+        self.alien_fire_probability = ALIEN_START_FIRE_PROBABILITY
 
         # Draw the bunkers
         for i in range(NUMBER_OF_BUNKERS):
@@ -105,6 +109,13 @@ class ShitInvaders:
             for alien in alien_row:
                 alien.move(next_movement)
 
+        if next_movement == 'down':
+            if self.alien_time > ALIEN_MINIMUM_TIME:
+                self.alien_time = self.alien_time - ALIEN_TIME_STEP
+
+            if self.alien_fire_probability < ALIEN_MAXIMUM_FIRE_PROBABILITY:
+                self.alien_fire_probability = self.alien_fire_probability + ALIEN_FIRE_PROBABILITY_STEP
+
     # Return an array containing all the aliens at the bottom of the screen (the ones eligible to fire)
     def get_bottom_aliens(self):
         bottom_aliens = [None for i in range(ALIENS_PER_ROW)]
@@ -149,13 +160,13 @@ class ShitInvaders:
         self.bullets = list(filter(lambda b: not b.is_dead(), self.bullets))
 
         # Aliens move slower, only move them every ALIEN_TIME steps
-        if self.t % ALIEN_TIME == 0:
+        if self.t % int(self.alien_time) == 0:
             # Move all the aliens
             self.move_aliens()
 
             # Make some of the bottom aliens launch bullets
             for alien in self.get_bottom_aliens():
-                if random() < ALIEN_FIRE_PROBABILITY:
+                if random() < self.alien_fire_probability:
                     bullet = alien.launch_bullet()
                     self.bullets.append(bullet)
 
