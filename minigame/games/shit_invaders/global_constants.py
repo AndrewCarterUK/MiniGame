@@ -12,7 +12,7 @@ ALIEN_ROWS = int(HEIGHT / (2 * ALIEN_BLOCK_SIZE))
 ALIEN_TIME = 4
 
 # How likely an alien is to fire in a time step
-ALIEN_FIRE_PROBABILITY = 0.005
+ALIEN_FIRE_PROBABILITY = 0.01
 
 # Bunker constants
 NUMBER_OF_BUNKERS = 4

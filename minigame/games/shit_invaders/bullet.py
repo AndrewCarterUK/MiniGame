@@ -1,21 +1,21 @@
 from minigame.games.shit_invaders.global_constants import WIDTH, HEIGHT
 from PIL import ImageDraw
 
-BULLET_WIDTH = 2
-BULLET_HEIGHT = 6
+BULLET_WIDTH = 1
+BULLET_HEIGHT = 4
 
 
 class Bullet:
     def __init__(self, source_x1, source_y1, source_x2, source_y2, direction):
-        self.x1 = int(((source_x1 + source_x2) / 2) - (BULLET_WIDTH / 2))
-        self.x2 = self.x1 + BULLET_WIDTH
+        self.x1 = int((source_x1 + source_x2 + BULLET_WIDTH) / 2)
+        self.x2 = self.x1 + BULLET_WIDTH - 1
 
         if direction == 'down':
             self.y1 = source_y2 + 1
-            self.y2 = self.y1 + BULLET_HEIGHT
+            self.y2 = self.y1 + BULLET_HEIGHT - 1
         elif direction == 'up':
             self.y2 = source_y1 - 1
-            self.y1 = self.y2 - BULLET_HEIGHT
+            self.y1 = self.y2 - BULLET_HEIGHT + 1
 
         self.direction = direction
         self.dead = False
