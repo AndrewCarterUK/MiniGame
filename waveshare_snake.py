@@ -15,7 +15,7 @@ def main():
     u_button = Button(6)
     d_button = Button(19)
 
-    snake = Snake(display, WIDTH, HEIGHT, l_button, r_button, u_button, d_button)
+    snake = Snake(display, WIDTH, HEIGHT, STEP_TIME, l_button, r_button, u_button, d_button)
     snake.play()
 
 
