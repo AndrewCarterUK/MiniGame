@@ -1,7 +1,7 @@
 from minigame.tk import MiniGameTk
 from minigame.games.shit_invaders import ShitInvaders
 
-SCALE_FACTOR = 8
+SCALE_FACTOR = 10
 WIDTH = 128
 HEIGHT = 128
 STEP_TIME = 0.01

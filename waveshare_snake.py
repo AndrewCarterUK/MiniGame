@@ -1,5 +1,6 @@
 from minigame.waveshare.button import Button
 from minigame.waveshare.display import Display
+from minigame.games.snake import Snake
 
 WIDTH = 20
 HEIGHT = 20
